@@ -6,7 +6,7 @@ public class Prompt {
     private final String DEFAULT_PROMPT_SIGN = "$>";
     private String currentPrompt;
 
-    Prompt() {
+    public Prompt() {
         currentPrompt = DEFAULT_PROMPT_SIGN;
     }
 
