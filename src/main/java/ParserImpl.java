@@ -1,3 +1,9 @@
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 /**
  * Created by Damian Wtorek on 2017-09-15.
  */
@@ -55,8 +61,19 @@ public class ParserImpl implements Parser {
             return true;
         }
     }
-    public void getCmd(){
+    public String getCmd(){
+        return System.getProperties().getProperty("user.dir");
+    }
+    public void justDirMyLord(){
+        File file = new File(System.getProperties().getProperty("user.dir"));
+        File[] files = file.listFiles();
 
-        System.out.println("Katolog " +System.getProperties().getProperty("dir"));
+        for ( int i = 0 ; i < files.length ; i++) {
+            if ( files[i].isFile()) {
+                System.out.println("FILE\t" + files[i].getName());
+            }else {
+                System.out.println("DIR \t" + files[i].getName());
+            }
+        }
     }
 }

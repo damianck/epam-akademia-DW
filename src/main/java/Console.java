@@ -1,3 +1,4 @@
+import java.time.LocalTime;
 import java.util.Scanner;
 
 /**
@@ -13,6 +14,7 @@ public class Console {
     private boolean isWorking;
     private boolean isCorrect;
 
+    
     Console() {
         scanner = new Scanner(System.in);
         prompt = new Prompt();
@@ -29,13 +31,11 @@ public class Console {
         while (isWorking) {
             message.print(DEFAULT_NAME_SHELL + prompt.getCurrentPrompt());
             command = scanner.nextLine();
-            System.out.println("test result-> " + command);
             isCorrect = parser.checkCommand(command);
 
             if (!isCorrect) {
                 message.print(command + " : " + Command.NONE.getCommand() + "\n");
             } else {
-                // jesli ok
                 String[] split = command.split(" ");
                 if (split.length > 1) {
                     if (parser.isPrompt(command)) {
@@ -44,19 +44,24 @@ public class Console {
                         } else
                             prompt.setCurrentPrompt(split[1]);
                     } else {
-                        parser.getCmd();
-                        System.out.println("katalogi");
+                        message.print(DEFAULT_NAME_SHELL + parser.getCmd() + "\n");
+
+                    }
+                } else {
+                    if (command.equalsIgnoreCase(Command.DIR.getCommand())) {
+                        parser.justDirMyLord();
+                    }
+                    if (command.equalsIgnoreCase(Command.EXIT.getCommand())) {
+                        message.print("Bye\n");
+                        isWorking = false;
+                        System.exit(0);
+                    }
+                    if (command.equalsIgnoreCase(Command.STATS.getCommand())) {
+
                     }
                 }
-
             }
         }
-    }
-
-    public void bye() {
-        message.print("\nbye\n");
-        isWorking = false;
-        System.exit(0);
     }
 
     public void changePrompt(String newValue) {
