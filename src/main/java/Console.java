@@ -1,4 +1,3 @@
-import java.time.LocalTime;
 import java.util.Scanner;
 
 /**
@@ -14,7 +13,6 @@ public class Console {
     private boolean isWorking;
     private boolean isCorrect;
 
-    
     Console() {
         scanner = new Scanner(System.in);
         prompt = new Prompt();
@@ -57,6 +55,8 @@ public class Console {
                         System.exit(0);
                     }
                     if (command.equalsIgnoreCase(Command.STATS.getCommand())) {
+
+                        message.print("Soon :] \n");
 
                     }
                 }

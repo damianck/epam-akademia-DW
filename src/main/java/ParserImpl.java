@@ -1,8 +1,4 @@
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 /**
  * Created by Damian Wtorek on 2017-09-15.
@@ -23,7 +19,7 @@ public class ParserImpl implements Parser {
         x = command.split(" ");
         return check();
     }
-
+    @Override
     public Prompt checkPrompt(String commmand, Prompt cur) {
 
         String[] part = commmand.split(" ");
@@ -46,13 +42,7 @@ public class ParserImpl implements Parser {
         }
         return false;
     }
-
-
     @Override
-    public boolean isCorrectCommand() {
-        return false;
-    }
-
     public boolean isPrompt(String command) {
         String[] split = command.split(" ");
         if (split[1].equalsIgnoreCase(Command.DISPLAY.getCommand())) {
@@ -61,10 +51,12 @@ public class ParserImpl implements Parser {
             return true;
         }
     }
+    @Override
     public String getCmd(){
         return System.getProperties().getProperty("user.dir");
     }
-    public void justDirMyLord(){
+    @Override
+    public void justDirMyLord(){ // XD
         File file = new File(System.getProperties().getProperty("user.dir"));
         File[] files = file.listFiles();
 
