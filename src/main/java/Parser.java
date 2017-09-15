@@ -3,5 +3,5 @@
  */
 public interface Parser {
     boolean isCorrectCommand();
-    void checkCommand(String command);
+    boolean checkCommand(String command);
 }
